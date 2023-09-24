@@ -7,25 +7,25 @@ struct dict{
     int value;
 };
 
-void sort_vector(vector<dict> &source){
+void swap(dict &source1, dict &source2){
     int value, key;
+    key = source1.key;
+    value = source1.value;
+    source1.key = source2.key;
+    source1.value = source2.value;
+    source2.key = key;
+    source2.value = value;
+}
+
+void sort_vector(vector<dict> &source){
     for (int i = 0; i < source.size(); i++){
         for( int j = i+1; j < source.size(); j++){
             if(source[i].value <= source[j].value){
-                key = source[i].key;
-                value = source[i].value;
-                source[i].key = source[j].key;
-                source[i].value = source[j].value;
-                source[j].key = key;
-                source[j].value = value;
+                swap(source[i], source[j]);
             }
             if ((source[i].value == source[j].value) && (source[i].key <= source[j].key)){
-                key = source[i].key;
-                value = source[i].value;
-                source[i].key = source[j].key;
-                source[i].value = source[j].value;
-                source[j].key = key;
-                source[j].value = value;
+                swap(source[i], source[j]);
+
             }
         }
     }
